@@ -4,17 +4,17 @@ import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import screenshotContacts from '@/images/screenshots/contacts.png'
-import screenshotInventory from '@/images/screenshots/inventory.png'
-import screenshotProfitLoss from '@/images/screenshots/profit-loss.png'
+import screenshotData from '@/images/screenshots/data.png'
+import screenshotMarketingService from '@/images/screenshots/marketing-service.png'
+import screenshotProject from '@/images/screenshots/Project-incubation.jpg'
 
 const features = [
   {
     name: '金融',
     summary: 'WMJTYD信号服务，准确率已高达9成!',
     description:
-      'description description description',
-    image: screenshotProfitLoss,
+      '- 营销策划- 互联网推广- 粉丝激活',
+    image: screenshotMarketingService,
     icon: function ReportingIcon() {
       let id = useId()
       return (
@@ -46,10 +46,9 @@ const features = [
   {
     name: '数据服务',
     summary:
-      'Never lose track of what’s in stock with accurate inventory tracking.',
-    description:
-      'We don’t offer this as part of our software but that statement is inarguably true. Accurate inventory tracking would help you for sure.',
-    image: screenshotInventory,
+      '借力数据，挖掘客户价值、为企业提供新的增长点。      ',
+    description:'- 共享单车数据挖掘分析，提供参考停车地点 - 数据结构优化调整，保障业务快速增长 - 选股策略',
+    image: screenshotData,
     icon: function InventoryIcon() {
       return (
         <>
@@ -74,10 +73,10 @@ const features = [
   {
     name: '项目孵化',
     summary:
-      'Organize all of your contacts, service providers, and invoices in one place.',
+      '聚合团队及成员积累，结合行业专家经验，进行项目孵化      ',
     description:
-      'This also isn’t actually a feature, it’s just some friendly advice. We definitely recommend that you do this, you’ll feel really organized and professional.',
-    image: screenshotContacts,
+      '',
+    image: screenshotProject,
     icon: function ContactsIcon() {
       return (
         <>

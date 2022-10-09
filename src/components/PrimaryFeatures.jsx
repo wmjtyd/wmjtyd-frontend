@@ -4,29 +4,29 @@ import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import screenshotIT from '@/images/screenshots/it.jpg'
+import screenshotStock from '@/images/screenshots/Stock.jpg'
+import screenshotVatTarget from '@/images/screenshots/target.jpg'
 import backgroundImage from '@/images/background-features.jpg'
-import screenshotExpenses from '@/images/screenshots/expenses.png'
-import screenshotPayroll from '@/images/screenshots/payroll.png'
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
 
 const features = [
   {
     title: '信号服务',
     description:
       "利用业界领先技术取得交易信号，让您的交易抢占先机、无往不利。",
-    image: screenshotPayroll,
+    image: screenshotStock,
   },
   {
     title: 'It系统开发    ',
     description:
       "咨询具有数十年专业开发经验的工程师，为您的系统锦上添花。",
-    image: screenshotExpenses,
+    image: screenshotIT,
   },
   {
     title: '任务平台',
     description:
       "聚合团队及成员积累，结合行业专家经验，进行项目孵化",
-    image: screenshotVatReturns,
+    image: screenshotVatTarget,
   },
   
 ]

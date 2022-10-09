@@ -1,70 +1,58 @@
 import Image from 'next/future/image'
 
 import { Container } from '@/components/Container'
-import avatarImage1 from '@/images/avatars/avatar-1.png'
-import avatarImage2 from '@/images/avatars/avatar-2.png'
-import avatarImage3 from '@/images/avatars/avatar-3.png'
-import avatarImage4 from '@/images/avatars/avatar-4.png'
-import avatarImage5 from '@/images/avatars/avatar-5.png'
 
 const testimonials = [
   [
     {
       content:
-        'TaxPal is so easy to use I can’t help but wonder if it’s really doing the things the government expects me to do.',
+        '聚合盈余力量，为企业、个人提供方法论，需求新的增长点，推动社会进步',
       author: {
-        name: 'Sheryl Berge',
-        role: 'CEO at Lynch LLC',
-        image: avatarImage1,
+        type: '使命',
+        description: '',
       },
     },
     {
       content:
-        'I’m trying to get a hold of someone in support, I’m in a lot of trouble right now and they are saying it has something to do with my books. Please get back to me right away.',
+        '通过聚合、创新、分享，不断创造技术价值和财富，成为一个有影响力的团队',
       author: {
-        name: 'Amy Hahn',
-        role: 'Director at Velocity Industries',
-        image: avatarImage4,
+        type: '愿景',
+        description: '',
+      },
+    },
+  ],
+  [
+    {
+      content: '先有效率，再有诚信，然后有收获',
+      author: {
+        type: '价值观',
+        description: '',
+      },
+    },
+    {
+      content:
+        '任务、电商、人力 改成 、大数据方案  、低代码管理系统、舆情、知识图谱、分布式任务、物联终端平台',
+      author: {
+        type: '项目孵化',
+        description: '',
       },
     },
   ],
   [
     {
       content:
-        'The best part about TaxPal is every time I pay my employees, my bank balance doesn’t go down like it used to. Looking forward to spending this extra cash when I figure out why my card is being declined.',
+        '一个人的力量有限。如果我们聚合起来朝着一个目标去积累，量变就会产生质变，聚沙成塔。',
       author: {
-        name: 'Leland Kiehn',
-        role: 'Founder of Kiehn and Sons',
-        image: avatarImage5,
+        type: '目标',
+        description: '',
       },
     },
     {
       content:
-        'There are so many things I had to do with my old software that I just don’t do at all with TaxPal. Suspicious but I can’t say I don’t love it.',
+        '我们是一群热爱技术的80后， 参与过线互联网公司的数据模型建设，拥有丰富的互联网数据分析经验。        ',
       author: {
-        name: 'Erin Powlowski',
-        role: 'COO at Armstrong Inc',
-        image: avatarImage2,
-      },
-    },
-  ],
-  [
-    {
-      content:
-        'I used to have to remit tax to the EU and with TaxPal I somehow don’t have to do that anymore. Nervous to travel there now though.',
-      author: {
-        name: 'Peter Renolds',
-        role: 'Founder of West Inc',
-        image: avatarImage3,
-      },
-    },
-    {
-      content:
-        'This is the fourth email I’ve sent to your support team. I am literally being held in jail for tax fraud. Please answer your damn emails, this is important.',
-      author: {
-        name: 'Amy Hahn',
-        role: 'Director at Velocity Industries',
-        image: avatarImage4,
+        type: '我们是谁',
+        description: '',
       },
     },
   ],
@@ -88,18 +76,19 @@ export function Testimonials() {
       <Container>
         <div className="max-w-2xl mx-auto md:text-center">
           <h2 className="text-3xl tracking-tight font-display text-slate-900 sm:text-4xl">
-            关于我们          </h2>
+            关于我们{' '}
+          </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-          团队成立于2012年，聚合了大量来自高校、自由职业者及其他盈余力量，通过挖掘技术发现未知、创造价值，是公司形式的有效补充。
+            团队成立于2012年，聚合了大量来自高校、自由职业者及其他盈余力量，通过挖掘技术发现未知、创造价值，是公司形式的有效补充。
           </p>
         </div>
         <ul
-          role="list"
+          description="list"
           className="grid max-w-2xl grid-cols-1 gap-6 mx-auto mt-16 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3"
         >
           {testimonials.map((column, columnIndex) => (
             <li key={columnIndex}>
-              <ul role="list" className="flex flex-col gap-y-6 sm:gap-y-8">
+              <ul description="list" className="flex flex-col gap-y-6 sm:gap-y-8">
                 {column.map((testimonial, testimonialIndex) => (
                   <li key={testimonialIndex}>
                     <figure className="relative p-6 bg-white shadow-xl rounded-2xl shadow-slate-900/10">
@@ -112,15 +101,13 @@ export function Testimonials() {
                       <figcaption className="relative flex items-center justify-between pt-6 mt-6 border-t border-slate-100">
                         <div>
                           <div className="text-base font-display text-slate-900">
-                            {testimonial.author.name}
+                            {testimonial.author.type}
                           </div>
                           <div className="mt-1 text-sm text-slate-500">
-                            {testimonial.author.role}
+                            {testimonial.author.description}
                           </div>
                         </div>
-                        <div className="overflow-hidden rounded-full bg-slate-50">
-                  
-                        </div>
+                        <div className="overflow-hidden rounded-full bg-slate-50"></div>
                       </figcaption>
                     </figure>
                   </li>

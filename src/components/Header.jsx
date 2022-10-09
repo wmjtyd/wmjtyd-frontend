@@ -80,7 +80,6 @@ function MobileNavigation() {
             <MobileNavLink href="#features">业务一览</MobileNavLink>
             <MobileNavLink href="#testimonials">关于我们</MobileNavLink>
             <hr className="m-2 border-slate-300/40" />
-            <MobileNavLink href="/login">Sign in</MobileNavLink>
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>

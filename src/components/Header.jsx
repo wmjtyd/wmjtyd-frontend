@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import Link from 'next/link'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -44,6 +45,8 @@ function MobileNavIcon({ open }) {
 }
 
 function MobileNavigation() {
+  const { query } = useRouter()
+  const locale = query['en-US'] == '' ? 'en-US' : 'zh-CN'
   return (
     <Popover>
       <Popover.Button
@@ -75,10 +78,14 @@ function MobileNavigation() {
         >
           <Popover.Panel
             as="div"
-            className="absolute inset-x-0 flex flex-col p-4 mt-4 text-lg tracking-tight origin-top bg-white shadow-xl top-full rounded-2xl text-slate-900 ring-1 ring-slate-900/5"
+            className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
           >
-            <MobileNavLink href="#features">业务一览</MobileNavLink>
-            <MobileNavLink href="#testimonials">关于我们</MobileNavLink>
+            <MobileNavLink href="#features">
+              {locale === 'zh-CN' ? '业务一览' : 'Business Overview'}
+            </MobileNavLink>
+            <MobileNavLink href="#testimonials">
+              {locale === 'zh-CN' ? '关于我们' : 'About Us'}
+            </MobileNavLink>
             <hr className="m-2 border-slate-300/40" />
           </Popover.Panel>
         </Transition.Child>
@@ -88,25 +95,37 @@ function MobileNavigation() {
 }
 
 export function Header() {
+  const { query } = useRouter()
+  const locale = query['en-US'] == '' ? 'en-US' : 'zh-CN'
+
   return (
     <header className="py-10">
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
             <Link href="#" aria-label="Home">
-              <Logo className="w-auto h-10" />
+              <Logo className="h-10 w-auto" />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#features">业务一览</NavLink>
-              <NavLink href="#testimonials">关于我们</NavLink>
+              <NavLink href="#features">
+                {locale === 'zh-CN' ? '业务一览' : 'Business Overview'}
+              </NavLink>
+              <NavLink href="#testimonials">
+                {locale === 'zh-CN' ? '关于我们' : 'About Us'}
+              </NavLink>
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-            </div>
+            <div className="hidden md:block"></div>
             <Button href="/" color="blue">
               <span>
-                English Version
+                {locale === 'zh-CN' ? (
+                  <Link href={'/?en-US'} activeClassName={locale === 'en-US'}>
+                    English
+                  </Link>
+                ) : (
+                  '中文'
+                )}
               </span>
             </Button>
             <div className="-mr-1 md:hidden">

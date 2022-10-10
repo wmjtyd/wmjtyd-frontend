@@ -3,8 +3,11 @@ import Link from 'next/link'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import { useRouter } from 'next/router'
 
 export function Footer() {
+  const { query } = useRouter()
+  const locale = query['en-US'] == '' ? 'en-US' : 'zh-CN'
   return (
     <footer className="bg-slate-50">
       <Container>
@@ -12,8 +15,8 @@ export function Footer() {
           <Logo className="w-auto h-10 mx-auto" />
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="flex justify-center -my-1 gap-x-6">
-              <NavLink href="#features">业务一览</NavLink>
-              <NavLink href="#testimonials">关于我们</NavLink>
+              <NavLink href="#features">{locale === 'zh-CN' ? "业务一览":"Business Overview"}</NavLink>
+              <NavLink href="#testimonials">{locale==="zh-CN"?"关于我们":"About Us"}</NavLink>
             </div>
           </nav>
         </div>

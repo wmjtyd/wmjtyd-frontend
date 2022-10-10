@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/future/image'
 import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
+import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
 import screenshotIT from '@/images/screenshots/it.jpg'
@@ -9,29 +10,48 @@ import screenshotStock from '@/images/screenshots/Stock.jpg'
 import screenshotVatTarget from '@/images/screenshots/target.jpg'
 import backgroundImage from '@/images/background-features.jpg'
 
-const features = [
-  {
-    title: '信号服务',
-    description:
-      "利用业界领先技术取得交易信号，让您的交易抢占先机、无往不利。",
-    image: screenshotStock,
-  },
-  {
-    title: 'It系统开发    ',
-    description:
-      "咨询具有数十年专业开发经验的工程师，为您的系统锦上添花。",
-    image: screenshotIT,
-  },
-  {
-    title: '任务平台',
-    description:
-      "聚合团队及成员积累，结合行业专家经验，进行项目孵化",
-    image: screenshotVatTarget,
-  },
-  
-]
+const features = {
+  'zh-CN': [
+    {
+      title: '信号服务',
+      description:
+        '利用业界领先技术取得交易信号，让您的交易抢占先机、无往不利。',
+      image: screenshotStock,
+    },
+    {
+      title: 'It系统开发    ',
+      description: '咨询具有数十年专业开发经验的工程师，为您的系统锦上添花。',
+      image: screenshotIT,
+    },
+    {
+      title: '任务平台',
+      description: '聚合团队及成员积累，结合行业专家经验，进行项目孵化',
+      image: screenshotVatTarget,
+    },
+  ],
+  'en-US': [
+    {
+      title: 'Signal Service',
+      description:
+        'Use the leading technology to get trading signals, so that your trading can seize the opportunity and be successful.',
+      image: screenshotStock,
+    },
+    {
+      title: 'It system development',   
+      description: 'Consult with professional engineers with decades of development experience to add beauty to your system.',
+      image: screenshotIT,
+    },
+    {
+      title: 'Task platform',
+      description: 'Aggregate team and member accumulation, combine industry expert experience, and incubate projects',
+      image: screenshotVatTarget,
+    },
+  ],
+}
 
 export function PrimaryFeatures() {
+  const { query } = useRouter()
+  const locale = query['en-US'] == '' ? 'en-US' : 'zh-CN'
   let [tabOrientation, setTabOrientation] = useState('horizontal')
 
   useEffect(() => {
@@ -66,10 +86,12 @@ export function PrimaryFeatures() {
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <h2 className="text-3xl tracking-tight text-white font-display sm:text-4xl md:text-5xl">
-业务一览          </h2>
+            {locale === 'zh-CN' ? '业务一览' : 'Business Overview'}{' '}
+          </h2>
           <p className="mt-6 text-lg tracking-tight text-blue-100">
-          WMJTYD有众多业务，满足您公司的各项需求。
-
+            {locale === 'zh-CN'
+              ? 'WMJTYD有众多业务，满足您公司的各项需求。'
+              : 'WMJTYD has numerous businesses to meet the various needs of your company.'}
           </p>
         </div>
         <Tab.Group
@@ -81,7 +103,7 @@ export function PrimaryFeatures() {
             <>
               <div className="flex pb-4 -mx-4 overflow-x-auto sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-5">
                 <Tab.List className="relative z-10 flex px-4 gap-x-4 whitespace-nowrap sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
-                  {features.map((feature, featureIndex) => (
+                  {features[locale].map((feature, featureIndex) => (
                     <div
                       key={feature.title}
                       className={clsx(
@@ -119,7 +141,7 @@ export function PrimaryFeatures() {
                 </Tab.List>
               </div>
               <Tab.Panels className="lg:col-span-7">
-                {features.map((feature) => (
+                {features[locale].map((feature) => (
                   <Tab.Panel key={feature.title} unmount={false}>
                     <div className="relative sm:px-6 lg:hidden">
                       <div className="absolute -inset-x-4 top-[-6.5rem] bottom-[-4.25rem] bg-white/10 ring-1 ring-inset ring-white/10 sm:inset-x-0 sm:rounded-t-xl" />

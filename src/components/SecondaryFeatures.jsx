@@ -7,8 +7,9 @@ import { Container } from '@/components/Container'
 import screenshotData from '@/images/screenshots/data.png'
 import screenshotMarketingService from '@/images/screenshots/marketing-service.png'
 import screenshotProject from '@/images/screenshots/Project-incubation.jpg'
+import { useRouter } from 'next/router'
 
-const features = [
+const features ={"zh-CN": [
   {
     name: '金融',
     summary: 'WMJTYD信号服务，准确率已高达9成!',
@@ -93,9 +94,98 @@ const features = [
       )
     },
   },
+],
+"en-US": [
+  {
+    name: 'Marketing',
+    summary: 'WMJTYD signal service, accuracy has reached 9!',
+    description:
+      '- Marketing planning- Internet promotion- Fan activation',
+    image: screenshotMarketingService,
+    icon: function ReportingIcon() {
+      let id = useId()
+      return (
+        <>
+          <defs>
+            <linearGradient
+              id={id}
+              x1="11.5"
+              y1={18}
+              x2={36}
+              y2="15.5"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset=".194" stopColor="#fff" />
+              <stop offset={1} stopColor="#6692F1" />
+            </linearGradient>
+          </defs>
+          <path
+            d="m30 15-4 5-4-11-4 18-4-11-4 7-4-5"
+            stroke={`url(#${id})`}
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      )
+    },
+  },
+  {
+    name: 'Data',
+    summary:
+      'Leveraging data, mining customer value, and providing new growth points for enterprises.      ',
+    description:'- Shared bicycle data mining analysis, providing reference parking locations - Data structure optimization adjustment, ensuring business growth - Stock selection strategy',
+    image: screenshotData,
+    icon: function InventoryIcon() {
+      return (
+        <>
+          <path
+            opacity=".5"
+            d="M8 17a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2Z"
+            fill="#fff"
+          />
+          <path
+            opacity=".3"
+            d="M8 24a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2Z"
+            fill="#fff"
+          />
+          <path
+            d="M8 10a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2Z"
+            fill="#fff"
+          />
+        </>
+      )
+    },
+  },
+  {
+    name: 'Project',
+    summary:
+      'Aggregate teams and members to accumulate, combine industry experts experience, and incubate projects      ',
+    description:
+      '',
+    image: screenshotProject,
+    icon: function ContactsIcon() {
+      return (
+        <>
+          <path
+            opacity=".5"
+            d="M25.778 25.778c.39.39 1.027.393 1.384-.028A11.952 11.952 0 0 0 30 18c0-6.627-5.373-12-12-12S6 11.373 6 18c0 2.954 1.067 5.659 2.838 7.75.357.421.993.419 1.384.028.39-.39.386-1.02.036-1.448A9.959 9.959 0 0 1 8 18c0-5.523 4.477-10 10-10s10 4.477 10 10a9.959 9.959 0 0 1-2.258 6.33c-.35.427-.354 1.058.036 1.448Z"
+            fill="#fff"
+          />
+          <path
+            d="M12 28.395V28a6 6 0 0 1 12 0v.395A11.945 11.945 0 0 1 18 30c-2.186 0-4.235-.584-6-1.605ZM21 16.5c0-1.933-.5-3.5-3-3.5s-3 1.567-3 3.5 1.343 3.5 3 3.5 3-1.567 3-3.5Z"
+            fill="#fff"
+          />
+        </>
+      )
+    },
+  },
 ]
+}
 
 function Feature({ feature, isActive, className, ...props }) {
+  const { query } = useRouter()
+  const locale=query["en-US"]==""?"en-US":"zh-CN";
   return (
     <div
       className={clsx(className, !isActive && 'opacity-75 hover:opacity-100')}
@@ -128,9 +218,11 @@ function Feature({ feature, isActive, className, ...props }) {
 }
 
 function FeaturesMobile() {
+  const { query } = useRouter()
+  const locale=query["en-US"]==""?"en-US":"zh-CN";
   return (
     <div className="flex flex-col px-4 mt-20 -mx-4 overflow-hidden gap-y-10 sm:-mx-6 sm:px-6 lg:hidden">
-      {features.map((feature) => (
+      {features[locale].map((feature) => (
         <div key={feature.name}>
           <Feature feature={feature} className="max-w-2xl mx-auto" isActive />
           <div className="relative pb-10 mt-10">
@@ -151,12 +243,14 @@ function FeaturesMobile() {
 }
 
 function FeaturesDesktop() {
+  const { query } = useRouter()
+  const locale=query["en-US"]==""?"en-US":"zh-CN";
   return (
     <Tab.Group as="div" className="hidden lg:mt-20 lg:block">
       {({ selectedIndex }) => (
         <>
           <Tab.List className="grid grid-cols-3 gap-x-8">
-            {features.map((feature, featureIndex) => (
+            {features[locale].map((feature, featureIndex) => (
               <Feature
                 key={feature.name}
                 feature={{
@@ -175,7 +269,7 @@ function FeaturesDesktop() {
           </Tab.List>
           <Tab.Panels className="relative py-16 mt-20 overflow-hidden rounded-4xl bg-slate-200 px-14 xl:px-16">
             <div className="flex -mx-5">
-              {features.map((feature, featureIndex) => (
+              {features[locale].map((feature, featureIndex) => (
                 <Tab.Panel
                   static
                   key={feature.name}
@@ -206,6 +300,8 @@ function FeaturesDesktop() {
 }
 
 export function SecondaryFeatures() {
+  const { query } = useRouter()
+  const locale=query["en-US"]==""?"en-US":"zh-CN";
   return (
     <section
       id="secondary-features"
@@ -215,11 +311,9 @@ export function SecondaryFeatures() {
       <Container>
         <div className="max-w-2xl mx-auto md:text-center">
           <h2 className="text-3xl tracking-tight font-display text-slate-900 sm:text-4xl">
-          成功案例
-          </h2>
+          {locale==="zh-CN"?"成功案例":"Successful Cases"}          </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-          用数据精准融通各渠道
-            为企业提供方法论，寻找新的增长点
+          {locale==="zh-CN"?"用数据精准融通各渠道,为企业提供方法论，寻找新的增长点":"Use data to accurately integrate various channels, provide enterprises with methodologies, and find new growth points"}
           </p>
         </div>
         <FeaturesMobile />

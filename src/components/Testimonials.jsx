@@ -1,8 +1,8 @@
 import Image from 'next/future/image'
-
 import { Container } from '@/components/Container'
+import { useRouter } from 'next/router'
 
-const testimonials = [
+const testimonials ={"zh-CN":[
   [
     {
       content:
@@ -56,7 +56,63 @@ const testimonials = [
       },
     },
   ],
+],
+"en-US":[
+  [
+    {
+      content:
+        'Aggregate the surplus power to provide enterprises and individuals with methodologies, new growth points, and promote social progress',
+      author: {
+        type: 'Mission',
+        description: '',
+      },
+    },
+    {
+      content:
+        'By aggregating, innovating, and sharing, we continue to create technological value and wealth and become an influential team',
+      author: {
+        type: 'Vision',
+        description: '',
+      },
+    },
+  ],
+  [
+    {
+      content: 'First efficient, then honest, and then have a harvest',
+      author: {
+        type: 'Value',
+        description: '',
+      },
+    },
+    {
+      content:
+        'Task, e-commerce, manpower changed to, big data solution, low code management system, public opinion, knowledge graph, distributed task, Internet of Things terminal platform',
+      author: {
+        type: 'Project incubation',
+        description: '',
+      },
+    },
+  ],
+  [
+    {
+      content:
+        'The power of one person is limited. If we aggregate together to accumulate towards a goal, the quantity will change into quality, and the sand will be turned into a tower.',
+      author: {
+        type: 'Goal',
+        description: '',
+      },
+    },
+    {
+      content:
+        'We are a group of people who love technology in the 80s, participated in the data model construction of Internet companies, and have rich Internet data analysis experience.',
+      author: {
+        type: 'Who are we',
+        description: '',
+      },
+    },
+  ],
 ]
+}
 
 function QuoteIcon(props) {
   return (
@@ -67,6 +123,8 @@ function QuoteIcon(props) {
 }
 
 export function Testimonials() {
+  const { query } = useRouter()
+  const locale = query['en-US'] == '' ? 'en-US' : 'zh-CN'
   return (
     <section
       id="testimonials"
@@ -76,19 +134,24 @@ export function Testimonials() {
       <Container>
         <div className="max-w-2xl mx-auto md:text-center">
           <h2 className="text-3xl tracking-tight font-display text-slate-900 sm:text-4xl">
-            关于我们{' '}
+            {locale === 'zh-CN' ? '关于我们' : 'About Us'}{' '}
           </h2>
           <p className="mt-4 text-lg tracking-tight text-slate-700">
-            团队成立于2012年，聚合了大量来自高校、自由职业者及其他盈余力量，通过挖掘技术发现未知、创造价值，是公司形式的有效补充。
+            {locale === 'zh-CN'
+              ? '团队成立于2012年，聚合了大量来自高校、自由职业者及其他盈余力量，通过挖掘技术发现未知、创造价值，是公司形式的有效补充。'
+              : "The team was established in 2012, aggregating a large number of talents from universities, freelancers and other surplus forces, through the exploration of technology to discover the unknown and create value, is an effective supplement to the company's form."}
           </p>
         </div>
         <ul
           description="list"
           className="grid max-w-2xl grid-cols-1 gap-6 mx-auto mt-16 sm:gap-8 lg:mt-20 lg:max-w-none lg:grid-cols-3"
         >
-          {testimonials.map((column, columnIndex) => (
+          {testimonials[locale].map((column, columnIndex) => (
             <li key={columnIndex}>
-              <ul description="list" className="flex flex-col gap-y-6 sm:gap-y-8">
+              <ul
+                description="list"
+                className="flex flex-col gap-y-6 sm:gap-y-8"
+              >
                 {column.map((testimonial, testimonialIndex) => (
                   <li key={testimonialIndex}>
                     <figure className="relative p-6 bg-white shadow-xl rounded-2xl shadow-slate-900/10">

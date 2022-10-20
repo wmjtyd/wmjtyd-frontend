@@ -6,6 +6,7 @@ import { Hero } from '@/components/Hero'
 import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Testimonials } from '@/components/Testimonials'
+import { Introduction } from '@/components/Introduction'
 
 export default function Home(props) {
   const { locale, locales, defaultLocale, asPath } = useRouter();
@@ -25,6 +26,7 @@ export default function Home(props) {
       <main>
         <Hero />
         <PrimaryFeatures />
+      <Introduction />
         <SecondaryFeatures />
         <Testimonials />
       </main>

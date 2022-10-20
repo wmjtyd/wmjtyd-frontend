@@ -7,6 +7,8 @@ import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Testimonials } from '@/components/Testimonials'
 import { Introduction } from '@/components/Introduction'
+import { Testimonial } from '@/components/Testimonial'
+import avatarImage1 from '@/images/y.jpg'
 
 export default function Home(props) {
   const { locale, locales, defaultLocale, asPath } = useRouter();
@@ -27,6 +29,17 @@ export default function Home(props) {
         <Hero />
         <PrimaryFeatures />
       <Introduction />
+      <Testimonial
+        id="testimonial-from-tommy-stroman"
+        author={{
+          name: '杨巅峰',
+          role: '团队rust组组长',
+          image:avatarImage1,
+        }}
+      >        <p>
+     RUST 基础课程，进阶学习，持续更新中.......
+    </p>
+  </Testimonial>
         <SecondaryFeatures />
         <Testimonials />
       </main>
